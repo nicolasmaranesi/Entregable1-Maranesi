@@ -1,0 +1,126 @@
+[
+  {
+    "code": "USD",
+    "name": "Dolar estadounidense",
+    "symbol": "$",
+    "country": "Estados Unidos",
+    "flag": "🇺🇸"
+  },
+  {
+    "code": "EUR",
+    "name": "Euro",
+    "symbol": "€",
+    "country": "Union Europea",
+    "flag": "🇪🇺"
+  },
+  {
+    "code": "ARS",
+    "name": "Peso argentino",
+    "symbol": "$",
+    "country": "Argentina",
+    "flag": "🇦🇷"
+  },
+  {
+    "code": "GBP",
+    "name": "Libra esterlina",
+    "symbol": "£",
+    "country": "Reino Unido",
+    "flag": "🇬🇧"
+  },
+  {
+    "code": "BRL",
+    "name": "Real brasileño",
+    "symbol": "R$",
+    "country": "Brasil",
+    "flag": "🇧🇷"
+  },
+  {
+    "code": "CLP",
+    "name": "Peso chileno",
+    "symbol": "$",
+    "country": "Chile",
+    "flag": "🇨🇱"
+  },
+  {
+    "code": "UYU",
+    "name": "Peso uruguayo",
+    "symbol": "$U",
+    "country": "Uruguay",
+    "flag": "🇺🇾"
+  },
+  {
+    "code": "SOL",
+    "name": "Sol peruano",
+    "symbol": "S/",
+    "country": "Peru",
+    "flag": "🇵🇪"
+  },
+  {
+    "code": "JPY",
+    "name": "Yen japones",
+    "symbol": "¥",
+    "country": "Japon",
+    "flag": "🇯🇵"
+  },
+  {
+    "code": "CNY",
+    "name": "Yuan chino",
+    "symbol": "¥",
+    "country": "China",
+    "flag": "🇨🇳"
+  },
+  {
+    "code": "MXN",
+    "name": "Peso mexicano",
+    "symbol": "$",
+    "country": "Mexico",
+    "flag": "🇲🇽"
+  },
+  {
+    "code": "CO",
+    "name": "Peso colombiano",
+    "symbol": "$",
+    "country": "Colombia",
+    "flag": "🇨🇴"
+  },{
+    "code": "VE",
+    "name": "Bolivar venezolano",
+    "symbol": "Bs.",
+    "country": "Venezuela",
+    "flag": "🇻🇪"
+  },{
+    "code": "BO",
+    "name": "Boliviano",
+    "symbol": "BOB",
+    "country": "Bolivia",
+    "flag": "🇧🇴"
+  },
+  {
+    "code": "BTC",
+    "name": "Bitcoin",
+    "symbol": "₿",
+    "icon": "₿",
+    "type": "crypto"
+  },
+  {
+    "code": "ETH",
+    "name": "Ethereum",
+    "symbol": "ETH",
+    "icon": "◆",
+    "type": "crypto"
+  },
+  {
+    "code": "USDT",
+    "name": "USDT Coin",
+    "symbol": "USDT",
+    "icon": "Ⓣ",
+    "type": "crypto"
+  },
+  {
+    "code": "USDC",
+    "name": "USDC Coin",
+    "symbol": "USDC",
+    "icon": "ⓤ",
+    "type": "crypto"
+  }
+]

@@ -6,11 +6,15 @@
 - Flujo controlado.
 - Estilos basicos.
 
+## Version 1.1
+- Se remplazo alerts por interfaz grafica
+- Se agrego historial de operaciones
+- Se agrego decimales y formateo al resultado de las operaciones
+- Se agrego validacion al campo monto
+- Se idependizo la carga de monedas.
+
 ## Proximas Entregas
 
-- Reemplazar el uso de alerts por una interfaz gráfica embebida en la página.
 - Reemplazar tasas estaticas por valores dinamicos.
-- Agregar historial de operaciones.
-- Formatear resultado de operaciones.
-- Optimizar validaciones.
 - Agregar tests.
+- Agregar seccion de mercado, para que muestre el historia de fluctuacion de moneda en 7 dias - 1 mes - 1 año 

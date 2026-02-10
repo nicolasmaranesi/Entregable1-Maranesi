@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historial</title>
+  <link rel="stylesheet" href="../css/history.css" />
+  <script defer src="../js/history.js"></script>
+</head>
+<body>
+
+<header class="appHeader">
+  <a href="../index.html" class="logoLink">
+    <div class="logo">CODERHOUSE EXCHANGE</div>
+  </a>
+
+  <nav class="nav">
+    <a href="./exchange.html" class="navLink">Exchange</a>
+    <a href="./history.html" class="navLink active">History</a>
+  </nav>
+</header>
+
+<main class="historyLayout">
+
+  <h1>Historial de transacciones</h1>
+  <p>Registro de simulaciones realizadas</p>
+
+  <section class="historyList" id="historyList">
+    <!-- JS render -->
+  </section>
+
+  <div class="emptyState" id="emptyState">
+    No hay transacciones registradas aún.
+  </div>
+
+</main>
+<footer class="footer">© <span id="year"></span> Nicolas Carlos Maranesi</footer>
+
+</body>
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exchange</title>
+    <link rel="stylesheet" href="../css/exchange.css" />
+    <script defer src="../js/script.js"></script>
+  </head>
+  <body>
+<header class="appHeader">
+
+  <a href="../index.html" class="logoLink">
+    <div class="logo">CODERHOUSE EXCHANGE</div>
+  </a>
+
+  <nav class="nav">
+    <a href="./exchange.html" class="navLink active">Exchange</a>
+    <a href="./history.html" class="navLink">History</a>
+  </nav>
+</header>
+
+    <main class="exchangeLayout">
+      <header class="exchangeHeader">
+        <h1>Simulador de Exchange</h1>
+        <p>Seleccioná las monedas y simulá el intercambio</p>
+      </header>
+
+      <section class="exchangeCard">
+        <div class="currencyBlock">
+          <label>Desde</label>
+          <div class="currencySelect">
+            <div class="selectedCurrency" id="fromSelected"></div>
+            <div class="currencyDropdown hidden" id="fromDropdown"></div>
+          </div>
+          <input type="number" placeholder="Monto" id="amount" />
+        </div>
+
+        <div class="exchangeArrow" id="swapBtn">⇄</div>
+
+        <div class="currencyBlock">
+          <label>Hacia</label>
+          <div class="currencySelect">
+            <div class="selectedCurrency" id="toSelected"></div>
+            <div class="currencyDropdown hidden" id="toDropdown"></div>
+          </div>
+          <div class="result" id="result">—</div>
+        </div>
+      </section>
+
+      <button class="exchangeBtn" id="exchangeBtn" onclick="showSuccesToast()">
+        Simular intercambio
+      </button>
+
+      <div id="successToast" class="toast">✅ Operación exitosa</div>
+    </main>
+    <footer class="footer">© <span id="year"></span> Nicolas Carlos Maranesi</footer>
+  </body>
+   <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</html>

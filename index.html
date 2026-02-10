@@ -1,23 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=ç, initial-scale=1.0">
-    <title>Money Exchange</title>
-    <script defer src="js/script.js"></script>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-     <main class="layout">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coderhouse Exchange</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <h1>CODERHOUSE EXCHANGE</h1>
 
-    <h1>CODERHOUSE EXCHANGE</h1>
+      <p>
+        Este es un simulador que permite al usuario calcular el intercambio de
+        monedas a utilizando las tasas de cambio definidas.
+      </p>
 
-    <p>
-        Este es un simulador que permite al usuario calcular el intercambio de monedas a utilizando las tasas de cambio definidas.
-    </p>
-
-
-</main>
-</body>
-
+      <a href="./pages/exchange.html" class="callToAction">
+        COMENZAR SIMULACION</a
+      >
+      <div class="legalDisclaimer">
+        Las cotizaciones utilizadas en este simulador pueden no representar los
+        valores reales del mercado. El sitio fue construido con fines unicamente
+        educativos y de practica.
+      </div>
+    </main>
+    <footer class="footer">© <span id="year"></span> Nicolas Carlos Maranesi</footer>
+  </body>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </html>

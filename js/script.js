@@ -1,99 +1,155 @@
-const getAmount = () => {
-  let input = prompt(`Ingrese el monto a convertir: `);
-  if (input === null) return null;
-  let amount = parseFloat(input);
-  while (isNaN(amount) || amount <= 0) {
-    input = prompt(`Monto invalido. Por favor ingresar un monto mayor a 0 : `);
-    if (input === null) return null;
-    amount = parseFloat(input);
+const amountInput = document.getElementById("amount");
+const resultBox = document.getElementById("result");
+const exchangeBtn = document.getElementById("exchangeBtn");
+
+const fromSelected = document.getElementById("fromSelected");
+const toSelected = document.getElementById("toSelected");
+const fromDropdown = document.getElementById("fromDropdown");
+const toDropdown = document.getElementById("toDropdown");
+const swapBtn = document.getElementById("swapBtn");
+
+let currencies = [];
+let from = "USD";
+let to = "ARS";
+
+async function loadCurrencies() {
+  try {
+    const res = await fetch("../data/currency.json");
+    currencies = await res.json();
+
+    buildDropdown(fromDropdown, "from");
+    buildDropdown(toDropdown, "to");
+
+    updateSelected("from", from);
+    updateSelected("to", to);
+
+  } catch (err) {
+    console.error("Error cargando monedas:", err);
   }
-  return amount;
+}
+
+function buildDropdown(container, type) {
+  container.innerHTML = "";
+
+  currencies.forEach(currency => {
+    const div = document.createElement("div");
+    div.className = "currencyOption";
+    div.innerHTML = `
+      <span class="currencyFlag">${currency.flag || currency.icon || "💱"}</span>
+      <span class="currencyText">${currency.code} - ${currency.name}</span>
+    `;
+
+    div.onclick = () => {
+      if (type === "from") from = currency.code;
+      else to = currency.code;
+
+      updateSelected(type, currency.code);
+      container.classList.add("hidden");
+
+      calculate();
+    };
+
+    container.appendChild(div);
+  });
+}
+
+function updateSelected(type, code) {
+  const curr = currencies.find(currency => currency.code === code);
+  const target = type === "from" ? fromSelected : toSelected;
+
+  if (!curr) return;
+
+  target.innerHTML = `
+    <span class="currencyFlag">${curr.flag || curr.icon || "💱"}</span>
+    <span class="currencyText">${curr.code} - ${curr.name}</span>
+  `;
+}
+
+fromSelected.onclick = () => fromDropdown.classList.toggle("hidden");
+toSelected.onclick = () => toDropdown.classList.toggle("hidden");
+
+document.addEventListener("click", e => {
+  if (!fromSelected.contains(e.target) && !fromDropdown.contains(e.target)) {
+    fromDropdown.classList.add("hidden");
+  }
+  if (!toSelected.contains(e.target) && !toDropdown.contains(e.target)) {
+    toDropdown.classList.add("hidden");
+  }
+});
+
+const rates = {
+  USD: 0.00070175,
+  EUR: 0.00064561,
+  ARS: 1,
+  GBP: 0.00055439,
+  BRL: 0.00347368,
+  CLP: 0.68421053,
+  UYU: 0.02736842,
+  SOL: 0.00263158,
+  JPY: 0.10385965,
+  CNY: 0.00503860,
+  MXN: 0.01200000,
+  CO: 2.73684211,
+  VE: 0.02526316,
+  BO: 0.00484211,
+  BTC: 0.000000016,
+  ETH: 0.000000305,
+  USDT: 0.00070175,
+  USDC: 0.00070175
 };
 
-const CURRENCY = ["USD", "EUR", "ARS", "REAL", "UYU", "BTC", "ETH"];
-const RATE = [1485.0, 1673.0, 1, 268.0, 37.35, 127606679.6, 4209870.57];
+function calculate() {
+  const amount = parseFloat(amountInput.value);
 
-const getCurrency = (msg) => {
-  let options = CURRENCY.join(" / ");
-  let currency = prompt(`${msg} \nOpciones disponibles ${options}`);
-  if (currency === null) return null;
-  if (currency !== null) {
-    currency = currency.toUpperCase();
+  if (!amount || amount <= 0) {
+    resultBox.textContent = "—";
+    return;
   }
-  while (!CURRENCY.includes(currency)) {
-    currency = prompt(
-      `Moneda invalida.\n ${msg} \nOpciones disponibles ${options}`,
-    );
-    if (currency !== null) {
-      currency = currency.toUpperCase();
-    } else {
-      return null;
-    }
-  }
-  return currency;
+
+  const result = (amount / rates[from]) * rates[to];
+
+  resultBox.textContent = `${Number(amount)} ${from} = ${Number(result.toFixed(2))} ${to}`;
+}
+
+amountInput.addEventListener("input", calculate);
+exchangeBtn.addEventListener("click", calculate);
+
+
+swapBtn.onclick = () => {
+  [from, to] = [to, from];
+  updateSelected("from", from);
+  updateSelected("to", to);
+  calculate();
 };
 
-const getCurrencyIndex = (currency) => {
-  for (let i = 0; i < CURRENCY.length; i++) {
-    if (CURRENCY[i] == currency) {
-      return i;
-    }
-  }
-};
+loadCurrencies();
 
-const currencyExchange = (amount, origin, destination) => {
-  if (origin === destination) {
-    return amount;
-  } else {
-    let originIndex = getCurrencyIndex(origin);
-    let destinationIndex = getCurrencyIndex(destination);
-    let inputAmount = amount * RATE[originIndex];
-    let exchangedAmount = inputAmount / RATE[destinationIndex];
-    return exchangedAmount;
-  }
-};
 
-const showResult = (amount, origin, destination, exchangedAmount) => {
-  alert(
-    `Operacion exitosa. Gracias por operar con CODERHOUSE Exchange"\nEl resultado de la convsersion de ${amount} ${origin} \n es ${exchangedAmount} ${destination} `,
-  );
-  console.info(
-    `Se realizo la transaccion exitosa ${amount} ${origin} --> ${exchangedAmount} ${destination}`,
-  );
-};
-const getContinueOperation = () => {
-  let continueMsg = prompt(`¿Desea continuar convirtiendo monedas? (si / no)`);
-  if (continueMsg === false) return false;
-  continueMsg = continueMsg.toLocaleLowerCase();
-  while (continueMsg !== "si" && continueMsg !== "no") {
-    continueMsg = prompt(
-      `Opcion incorrecta. ¿Desea continuar convirtiendo monedas?`,
-    );
-    if (continueMsg === null) return false;
-    continueMsg = continueMsg.toLowerCase();
-  }
-  return continueMsg === "si";
-};
+function saveOperation() {
+    const historyMovements = JSON.parse(localStorage.getItem("historyMovements")) || [];
+    const amount = parseFloat(amountInput.value);
+    if (!amount || amount <= 0) return;
+    const result = (amount / rates[from]) * rates[to];
 
-const executeSimulator = () => {
-  alert(`Bienvenidos al simulador de intercambio de monedas de CODERHOUSE`);
-  let continueOperations = true;
-  while (continueOperations) {
-    let amount = getAmount();
-    if (amount === null) break;
-    let originCurrency = getCurrency("Seleccione la moneda de origen:");
-    if (originCurrency === null) break;
-    let destinationCurrency = getCurrency("Seleccione la moneda de destino:");
-    if (destinationCurrency === null) break;
-    let exchangedAmount = currencyExchange(
-      amount,
-      originCurrency,
-      destinationCurrency,
-    );
-    showResult(amount, originCurrency, destinationCurrency, exchangedAmount);
-    continueOperations = getContinueOperation();
-  }
-  alert("Gracias por operar con CODERHOUSE Exchange");
-};
+    historyMovements.push({
+      fecha: new Date().toLocaleString("es-AR"),
+      monedaDesde: from,
+      montoDesde: amount,
+      monedaHasta: to,
+      montoHasta: Number(result.toFixed(2)),
+      resultado: "exitosa"
+    });
 
-executeSimulator();
+    localStorage.setItem("historyMovements", JSON.stringify(historyMovements));
+  }
+
+
+  function showSuccesToast() {
+    saveOperation() 
+    const toast = document.getElementById("successToast");
+    toast.classList.add("show");
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2500);
+  }
