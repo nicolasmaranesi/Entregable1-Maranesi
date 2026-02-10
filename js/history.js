@@ -1,39 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
   const historyList = document.getElementById("historyList");
   const emptyState = document.getElementById("emptyState");
-
-
-
   const filterCurrency = document.getElementById("filterCurrency");
 
   let currencies = [];
-  async function loadCurrencies() {
-    try {
-      const res = await fetch("../data/currency.json");
-      currencies = await res.json();
 
-      currencies.forEach(currency => {
-        const option = document.createElement("option");
-        option.value = currency.code;
-        option.textContent = `${currency.code} - ${currency.name}`;
-        filterCurrency.appendChild(option);
-      });
-    } catch (err) {
-      console.error("Error cargando monedas:", err);
-    }
+
+  function withReverse(fn) {
+    return function(array) {
+      fn(array.slice().reverse());
+    };
   }
 
-  function getHistory() {
-    const movementsRaw = localStorage.getItem("historyMovements");
-    return movementsRaw ? JSON.parse(movementsRaw) : [];
-  }
-
-  function filterHistoryByCurrency(currencyCode) {
-    const history = getHistory();
-    if (!currencyCode) return history;
-    return history.filter(
-      op => op.monedaDesde === currencyCode || op.monedaHasta === currencyCode
-    );
+  function withFilter(fn, filterFn) {
+    return function(array, ...args) {
+      const filtered = array.filter(filterFn);
+      fn(filtered, ...args);
+    };
   }
 
   function renderHistory(movements) {
@@ -46,8 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     emptyState.style.display = "none";
 
     historyList.innerHTML = movements
-      .slice()
-      .reverse()
       .map(mov => `
         <article class="historyItem">
           <div class="historyTop">
@@ -74,12 +55,41 @@ document.addEventListener("DOMContentLoaded", () => {
       .join("");
   }
 
+  function getHistory() {
+    const movementsRaw = localStorage.getItem("historyMovements");
+    return movementsRaw ? JSON.parse(movementsRaw) : [];
+  }
+
+  async function loadCurrencies() {
+    try {
+      const res = await fetch("../data/currency.json");
+      currencies = await res.json();
+
+      currencies.forEach(currency => {
+        const option = document.createElement("option");
+        option.value = currency.code;
+        option.textContent = `${currency.code} - ${currency.name}`;
+        filterCurrency.appendChild(option);
+      });
+    } catch (err) {
+      console.error("Error cargando monedas:", err);
+    }
+  }
+
+  const renderFilteredReversedHistory = withReverse(
+    withFilter(renderHistory, mov => {
+      const selected = filterCurrency.value;
+      return !selected || mov.monedaDesde === selected || mov.monedaHasta === selected;
+    })
+  );
+
   filterCurrency.addEventListener("change", () => {
-    const filtered = filterHistoryByCurrency(filterCurrency.value);
-    renderHistory(filtered);
+    const movements = getHistory();
+    renderFilteredReversedHistory(movements);
   });
 
   loadCurrencies().then(() => {
-    renderHistory(getHistory());
+    const movements = getHistory();
+    renderFilteredReversedHistory(movements);
   });
 });
