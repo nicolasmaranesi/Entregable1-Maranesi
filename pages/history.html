@@ -25,8 +25,16 @@
   <h1>Historial de transacciones</h1>
   <p>Registro de simulaciones realizadas</p>
 
+  <div>
+  <label for="filterCurrency">Filtrar por moneda:</label>
+  <select id="filterCurrency">
+    <option value="">-- Todas --</option>
+  </select>
+</div>
+
+<div id="historyBox"></div>
+
   <section class="historyList" id="historyList">
-    <!-- JS render -->
   </section>
 
   <div class="emptyState" id="emptyState">

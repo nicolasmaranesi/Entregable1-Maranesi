@@ -13,7 +13,6 @@ body {
   flex-direction: column;
 }
 
-/* Layout */
 
 .exchangeLayout {
   max-width: 1100px;
@@ -22,9 +21,7 @@ body {
   flex: 1;
 }
 
-/* Header */
 
-/* Header */
 
 .appHeader {
   position: sticky;
@@ -54,7 +51,6 @@ body {
   color: #daef07;
 }
 
-/* Nav */
 
 .nav {
   display: flex;
@@ -112,7 +108,7 @@ body {
   margin-top: 14px;
 }
 
-/* Card principal */
+
 
 .exchangeCard {
   margin-top: 60px;
@@ -130,7 +126,6 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* Bloques */
 
 .currencyBlock label {
   display: block;
@@ -141,13 +136,11 @@ body {
   margin-bottom: 12px;
 }
 
-/* Selector */
 
 .currencySelect {
   position: relative;
 }
 
-/* Seleccionado */
 
 .selectedCurrency {
   display: flex;
@@ -195,13 +188,10 @@ body {
   background-color: rgba(255,255,255,0.07);
 }
 
-/* Oculto */
 
 .hidden {
   display: none;
 }
-
-/* Input monto */
 
 .currencyBlock input {
   margin-top: 16px;
@@ -222,7 +212,7 @@ body {
   outline: 2px solid #daef07;
   outline-offset: 2px;
 }
-
+/* CHROME */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -234,8 +224,6 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-/* Flecha */
-
 .exchangeArrow {
   font-size: 32px;
   color: #daef07;
@@ -244,7 +232,7 @@ input[type=number] {
   cursor: pointer;
 }
 
-/* Resultado */
+
 
 .result {
   margin-top: 18px;
@@ -256,7 +244,7 @@ input[type=number] {
   color: #daef07;
 }
 
-/* Botón */
+
 
 .exchangeBtn {
   margin-top: 48px;
@@ -285,7 +273,6 @@ input[type=number] {
   box-shadow: 0 6px 18px rgba(218, 239, 7, 0.2);
 }
 
-/* Responsive */
 
 @media (max-width: 900px) {
   .exchangeLayout {

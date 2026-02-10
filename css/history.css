@@ -1,6 +1,5 @@
 @import "./exchange.css";
 
-/* Layout */
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
@@ -28,7 +27,6 @@ body {
   color: #c7c7d1;
 }
 
-/* Listado */
 
 .historyList {
   margin-top: 48px;
@@ -37,7 +35,6 @@ body {
   gap: 16px;
 }
 
-/* Card */
 .historyItem {
   background: #13131a;
   border-radius: 12px;
@@ -46,7 +43,6 @@ body {
 }
 
 
-/* Moneda */
 
 .currencyInfo {
   display: flex;
@@ -63,28 +59,24 @@ body {
   font-weight: 500;
 }
 
-/* Flecha */
 
 .historyArrow {
   font-size: 20px;
   color: #daef07;
 }
 
-/* Monto */
 
 .amount {
   font-weight: 600;
   color: #daef07;
 }
 
-/* Fecha */
 
 .date {
   font-size: 12px;
   color: #9ea0ad;
 }
 
-/* Empty */
 
 .emptyState {
   margin-top: 60px;
@@ -93,7 +85,6 @@ body {
   display: none;
 }
 
-/* Responsive */
 .historyTop {
   display: flex;
   justify-content: space-between;
@@ -111,6 +102,58 @@ body {
   margin-top: 12px;
   font-size: 1.1rem;
 }
+
+.filterDiv {
+  margin-bottom: 20px;
+  position: relative;
+  max-width: 300px;
+}
+
+.filterDiv label {
+  display: block;
+  margin-bottom: 6px;
+  color: #3C4F6F;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#filterCurrency {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid rgba(60, 79, 111, 0.3);
+  border-radius: 8px;
+  background-color: #0f0f14;
+  color: #ffffff;
+  appearance: none; /* quita estilo nativo */
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+#filterCurrency:hover,
+#filterCurrency:focus {
+  border-color:  #daef07;
+  outline: none;
+  background-color: #16161c;
+}
+
+#filterCurrency option {
+  background-color: #0f0f14;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.filterDiv::after {
+  content: "▾";
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #ffffff;
+  font-size: 12px;
+}
+
 
 @media (max-width: 900px) {
   .historyLayout {
