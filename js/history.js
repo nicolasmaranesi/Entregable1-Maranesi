@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+
   const historyList = document.getElementById("historyList");
   const emptyState = document.getElementById("emptyState");
   const filterCurrency = document.getElementById("filterCurrency");
@@ -29,12 +29,17 @@ document.addEventListener("DOMContentLoaded", () => {
     emptyState.style.display = "none";
 
     historyList.innerHTML = movements
-      .map(mov => `
+      .map((mov, index) => `
         <article class="historyItem">
           <div class="historyTop">
             <span class="historyDate">${mov.fecha}</span>
             <span class="historyStatus success">${mov.resultado}</span>
+            <button class="deleteBtn" data-index="${index}">
+          <span class="material-symbols-outlined">Borrar</span>
+        </button>
           </div>
+
+          
 
           <div class="historyBody">
             <div class="historyCurrency">
@@ -92,4 +97,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const movements = getHistory();
     renderFilteredReversedHistory(movements);
   });
+
+  function deleteMovement(index) {
+  const movements = getHistory();
+
+  movements.splice(index, 1);
+
+  localStorage.setItem("historyMovements", JSON.stringify(movements));
+
+  renderFilteredReversedHistory(movements);
+}
+
+historyList.addEventListener("click", (e) => {
+  const btn = e.target.closest(".deleteBtn");
+
+    if (btn) {
+    const index = btn.dataset.index;
+    deleteMovement(index);
+  }
 });
+

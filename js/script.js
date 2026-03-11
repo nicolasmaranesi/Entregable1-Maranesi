@@ -8,9 +8,37 @@ const fromDropdown = document.getElementById("fromDropdown");
 const toDropdown = document.getElementById("toDropdown");
 const swapBtn = document.getElementById("swapBtn");
 
+const URL = 'https://api.frankfurter.app/latest?base=USD';
+
+
+
+
 let currencies = [];
 let from = "USD";
-let to = "ARS";
+let to = "EUR";
+
+let rates = {
+
+};
+
+
+async function loadRates(){
+  try{
+    fetch(URL)
+  .then(response => response.json())
+  .then(data => {
+    rates = data.rates;
+    rates["USD"] = 1;
+  });
+  } catch (error) {
+    console.error("Error cargando rates:", error);
+  }
+}
+
+async function init() {
+  await loadRates()
+}
+init();
 
 async function loadCurrencies() {
   try {
@@ -77,26 +105,6 @@ document.addEventListener("click", e => {
   }
 });
 
-const rates = {
-  USD: 0.00070175,
-  EUR: 0.00064561,
-  ARS: 1,
-  GBP: 0.00055439,
-  BRL: 0.00347368,
-  CLP: 0.68421053,
-  UYU: 0.02736842,
-  SOL: 0.00263158,
-  JPY: 0.10385965,
-  CNY: 0.00503860,
-  MXN: 0.01200000,
-  CO: 2.73684211,
-  VE: 0.02526316,
-  BO: 0.00484211,
-  BTC: 0.000000016,
-  ETH: 0.000000305,
-  USDT: 0.00070175,
-  USDC: 0.00070175
-};
 
 function calculate() {
   const amount = parseFloat(amountInput.value);
@@ -137,7 +145,7 @@ function saveOperation() {
       montoDesde: amount,
       monedaHasta: to,
       montoHasta: Number(result.toFixed(2)),
-      resultado: "exitosa"
+      resultado: "Exitosa"
     });
 
     localStorage.setItem("historyMovements", JSON.stringify(historyMovements));

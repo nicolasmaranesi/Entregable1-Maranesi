@@ -153,7 +153,20 @@ body {
   color: #ffffff;
   font-size: 12px;
 }
+.deleteBtn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
 
+.deleteBtn:hover {
+  background: #cc0000;
+}
 
 @media (max-width: 900px) {
   .historyLayout {

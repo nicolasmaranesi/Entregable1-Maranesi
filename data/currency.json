@@ -13,13 +13,7 @@
     "country": "Union Europea",
     "flag": "🇪🇺"
   },
-  {
-    "code": "ARS",
-    "name": "Peso argentino",
-    "symbol": "$",
-    "country": "Argentina",
-    "flag": "🇦🇷"
-  },
+  
   {
     "code": "GBP",
     "name": "Libra esterlina",
@@ -34,27 +28,7 @@
     "country": "Brasil",
     "flag": "🇧🇷"
   },
-  {
-    "code": "CLP",
-    "name": "Peso chileno",
-    "symbol": "$",
-    "country": "Chile",
-    "flag": "🇨🇱"
-  },
-  {
-    "code": "UYU",
-    "name": "Peso uruguayo",
-    "symbol": "$U",
-    "country": "Uruguay",
-    "flag": "🇺🇾"
-  },
-  {
-    "code": "SOL",
-    "name": "Sol peruano",
-    "symbol": "S/",
-    "country": "Peru",
-    "flag": "🇵🇪"
-  },
+
   {
     "code": "JPY",
     "name": "Yen japones",
@@ -77,50 +51,164 @@
     "flag": "🇲🇽"
   },
   {
-    "code": "CO",
-    "name": "Peso colombiano",
+    "code": "AUD",
+    "name": "Dolar australiano",
     "symbol": "$",
-    "country": "Colombia",
-    "flag": "🇨🇴"
-  },{
-    "code": "VE",
-    "name": "Bolivar venezolano",
-    "symbol": "Bs.",
-    "country": "Venezuela",
-    "flag": "🇻🇪"
-  },{
-    "code": "BO",
-    "name": "Boliviano",
-    "symbol": "BOB",
-    "country": "Bolivia",
-    "flag": "🇧🇴"
+    "country": "Australia",
+    "flag": "🇦🇺"
   },
   {
-    "code": "BTC",
-    "name": "Bitcoin",
-    "symbol": "₿",
-    "icon": "₿",
-    "type": "crypto"
+    "code": "CAD",
+    "name": "Dolar canadiense",
+    "symbol": "$",
+    "country": "Canada",
+    "flag": "🇨🇦"
   },
   {
-    "code": "ETH",
-    "name": "Ethereum",
-    "symbol": "ETH",
-    "icon": "◆",
-    "type": "crypto"
+    "code": "CHF",
+    "name": "Franco suizo",
+    "symbol": "CHF",
+    "country": "Suiza",
+    "flag": "🇨🇭"
   },
   {
-    "code": "USDT",
-    "name": "USDT Coin",
-    "symbol": "USDT",
-    "icon": "Ⓣ",
-    "type": "crypto"
+    "code": "CZK",
+    "name": "Corona checa",
+    "symbol": "Kč",
+    "country": "Republica Checa",
+    "flag": "🇨🇿"
   },
   {
-    "code": "USDC",
-    "name": "USDC Coin",
-    "symbol": "USDC",
-    "icon": "ⓤ",
-    "type": "crypto"
+    "code": "DKK",
+    "name": "Corona danesa",
+    "symbol": "kr",
+    "country": "Dinamarca",
+    "flag": "🇩🇰"
+  },
+  {
+    "code": "HKD",
+    "name": "Dolar de Hong Kong",
+    "symbol": "$",
+    "country": "Hong Kong",
+    "flag": "🇭🇰"
+  },
+  {
+    "code": "HUF",
+    "name": "Forinto hungaro",
+    "symbol": "Ft",
+    "country": "Hungria",
+    "flag": "🇭🇺"
+  },
+  {
+    "code": "IDR",
+    "name": "Rupia indonesia",
+    "symbol": "Rp",
+    "country": "Indonesia",
+    "flag": "🇮🇩"
+  },
+  {
+    "code": "ILS",
+    "name": "Nuevo sequel israeli",
+    "symbol": "₪",
+    "country": "Israel",
+    "flag": "🇮🇱"
+  },
+  {
+    "code": "INR",
+    "name": "Rupia india",
+    "symbol": "₹",
+    "country": "India",
+    "flag": "🇮🇳"
+  },
+  {
+    "code": "ISK",
+    "name": "Corona islandesa",
+    "symbol": "kr",
+    "country": "Islandia",
+    "flag": "🇮🇸"
+  },
+  {
+    "code": "KRW",
+    "name": "Won surcoreano",
+    "symbol": "₩",
+    "country": "Corea del Sur",
+    "flag": "🇰🇷"
+  },
+  {
+    "code": "MYR",
+    "name": "Ringgit malasio",
+    "symbol": "RM",
+    "country": "Malasia",
+    "flag": "🇲🇾"
+  },
+  {
+    "code": "NOK",
+    "name": "Corona noruega",
+    "symbol": "kr",
+    "country": "Noruega",
+    "flag": "🇳🇴"
+  },
+  {
+    "code": "NZD",
+    "name": "Dolar neozelandes",
+    "symbol": "$",
+    "country": "Nueva Zelanda",
+    "flag": "🇳🇿"
+  },
+  {
+    "code": "PHP",
+    "name": "Peso filipino",
+    "symbol": "₱",
+    "country": "Filipinas",
+    "flag": "🇵🇭"
+  },
+  {
+    "code": "PLN",
+    "name": "Zloty polaco",
+    "symbol": "zł",
+    "country": "Polonia",
+    "flag": "🇵🇱"
+  },
+  {
+    "code": "RON",
+    "name": "Leu rumano",
+    "symbol": "lei",
+    "country": "Rumania",
+    "flag": "🇷🇴"
+  },
+  {
+    "code": "SEK",
+    "name": "Corona sueca",
+    "symbol": "kr",
+    "country": "Suecia",
+    "flag": "🇸🇪"
+  },
+  {
+    "code": "SGD",
+    "name": "Dolar de Singapur",
+    "symbol": "$",
+    "country": "Singapur",
+    "flag": "🇸🇬"
+  },
+  {
+    "code": "THB",
+    "name": "Baht tailandés",
+    "symbol": "฿",
+    "country": "Tailandia",
+    "flag": "🇹🇭"
+  },
+  {
+    "code": "TRY",
+    "name": "Lira turca",
+    "symbol": "₺",
+    "country": "Turquia",
+    "flag": "🇹🇷"
+  },
+  {
+    "code": "ZAR",
+    "name": "Rand sudafricano",
+    "symbol": "R",
+    "country": "Sudafrica",
+    "flag": "🇿🇦"
   }
 ]
