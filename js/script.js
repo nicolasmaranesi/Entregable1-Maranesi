@@ -11,7 +11,7 @@ const swapBtn = document.getElementById("swapBtn");
 const URL = 'https://api.frankfurter.app/latest?base=USD';
 
 
-
+document.getElementById("year").textContent = new Date().getFullYear();
 
 let currencies = [];
 let from = "USD";
@@ -21,17 +21,31 @@ let rates = {
 
 };
 
+amountInput.addEventListener("keydown", (element) => {
+  if (["e", "E", "+", "-"].includes(element.key)) {
+    element.preventDefault();
+  }
+});
+
 
 async function loadRates(){
   try{
-    fetch(URL)
-  .then(response => response.json())
-  .then(data => {
+    const response = await fetch(URL);
+
+    if (!response.ok) {
+      throw new Error("Error al obtener cotizaciones");
+    }
+     const data = await response.json();
+
+  
     rates = data.rates;
     rates["USD"] = 1;
-  });
   } catch (error) {
-    console.error("Error cargando rates:", error);
+    Swal.fire({
+    icon: "error",
+    title: "Error",
+    text: "Error cargando cotizaciones"
+  });
   }
 }
 
@@ -52,7 +66,20 @@ async function loadCurrencies() {
     updateSelected("to", to);
 
   } catch (err) {
-    console.error("Error cargando monedas:", err);
+    Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "No se pudieron cargar las monedas"});
+    
+  }finally{
+    Toastify({
+      text: "Carga de monedas finalizada.",
+      duration: 2000,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "#3498db"
+    }).showToast();
+
   }
 }
 
@@ -153,11 +180,44 @@ function saveOperation() {
 
 
   function showSuccesToast() {
-    saveOperation() 
-    const toast = document.getElementById("successToast");
-    toast.classList.add("show");
 
-    setTimeout(() => {
-      toast.classList.remove("show");
-    }, 2500);
+  const amount = amountInput.value;
+  const result = resultBox.textContent;
+
+
+
+  if (!amount) {
+    Toastify({
+      text: "Complete el monto a convertir",
+      duration: 2500,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "#e74c3c",
+      close: true
+    }).showToast();
+    return;
   }
+
+  if (result.includes("NaN")) {
+    Toastify({
+      text: "Error en la conversion. Refresque la página.",
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "#e74c3c",
+      close: true
+    }).showToast();
+    return;
+  }
+
+  saveOperation();
+
+  Toastify({
+    text: "Operación exitosa",
+    duration: 2500,
+    gravity: "top",
+    position: "right",
+    backgroundColor: "#4CAF50",
+    close: true
+  }).showToast();
+}

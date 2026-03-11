@@ -76,9 +76,22 @@
         option.textContent = `${currency.code} - ${currency.name}`;
         filterCurrency.appendChild(option);
       });
-    } catch (err) {
-      console.error("Error cargando monedas:", err);
-    }
+    }  catch (err) {
+    Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "No se pudieron cargar las monedas"});
+    
+  }finally{
+    Toastify({
+      text: "Carga de monedas finalizada.",
+      duration: 2000,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "#3498db"
+    }).showToast();
+
+  }
   }
 
   const renderFilteredReversedHistory = withReverse(

@@ -22,27 +22,3 @@
 
 
 
-
-
--Todo con DOM y eventos, nada de prompt, alert, console, etc. --> OK
--Uso de librerias (toastify/sweetalert) --> remplazar toast por libreria, agregar libreria de alert para la finalizacion de la operacion, agregar logica de timeout 30 seg por operacion
--un try-catch-finally --> utilizarlo en el alert de finalizar operacion
--Logica completa del simulador --> agregar boton para borrar elementos del historial
--Se entrega mediante repositorio de github
-
-
-
-------------------------------------------------------------
-
-
--TODO LO DE LA SEGUNDA ENTREGA --> OK
--Minimo de estilado ---> OK
--Minimo 2 archivos JS (max. 4), NO MODULE, EXPORT NI IMPORT ---> OK
--Fetch, a una api y/o json local ---> JSON OK . FALTA API para consumir cotizacion
--Todo array de objetos literal va SI O SI a un json y se consume con fetch ---> ok
--Respetar estructura de archivos y carpetas, solo el index en la raíz ---> OK
--Todo con DOM y eventos, nada de prompt, alert, console, etc. --> OK
--Uso de librerias (toastify/sweetalert) --> remplazar toast por libreria, agregar libreria de alert para la finalizacion de la operacion, agregar logica de timeout 30 seg por operacion
--un try-catch-finally --> utilizarlo en el alert de finalizar operacion
--Logica completa del simulador --> agregar boton para borrar elementos del historial
--Se entrega mediante repositorio de github

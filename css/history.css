@@ -168,6 +168,32 @@ body {
   background: #cc0000;
 }
 
+
+.swal2-popup {
+  border-radius: 12px;
+  font-family: "Inter", sans-serif;
+  background-color: #0b0b0f !important;
+  color: #ffffff;
+}
+
+.swal2-title {
+  font-size: 22px;
+  color: #ffffff;
+}
+
+.swal2-confirm {
+  background-color: #daef07 !important;
+  border-radius: 8px;
+  color: #0b0b0f;
+}
+
+.swal2-confirm:hover{
+  background-color: #c4d906;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(218, 239, 7, 0.25);
+  
+}
+
 @media (max-width: 900px) {
   .historyLayout {
     padding: 120px 24px 60px;

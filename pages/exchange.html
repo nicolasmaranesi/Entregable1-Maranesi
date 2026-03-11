@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exchange</title>
     <link rel="stylesheet" href="../css/exchange.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer src="../js/script.js"></script>
   </head>
   <body>
@@ -51,12 +54,8 @@
       <button class="exchangeBtn" id="exchangeBtn" onclick="showSuccesToast()">
         Simular intercambio
       </button>
-
-      <div id="successToast" class="toast">✅ Operación exitosa</div>
     </main>
     <footer class="footer">© <span id="year"></span> Nicolas Carlos Maranesi</footer>
   </body>
-   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+
 </html>
