@@ -143,8 +143,13 @@ function updateSelected(type, code) {
   target.appendChild(text);
 }
 
-fromSelected.onclick = () => fromDropdown.classList.toggle("hidden");
-toSelected.onclick = () => toDropdown.classList.toggle("hidden");
+fromSelected.addEventListener("click", () => {
+  fromDropdown.classList.toggle("hidden");
+});
+
+toSelected.addEventListener("click", () => {
+  fromDropdown.classList.toggle("hidden");
+});
 
 document.addEventListener("click", e => {
   if (!fromSelected.contains(e.target) && !fromDropdown.contains(e.target)) {
@@ -176,12 +181,14 @@ exchangeBtn.addEventListener("click", () => {
 });
 
 
-swapBtn.onclick = () => {
+swapBtn.addEventListener("click", () => {
   [from, to] = [to, from];
+  
   updateSelected("from", from);
   updateSelected("to", to);
   calculate();
-};
+});
+
 
 loadCurrencies();
 
