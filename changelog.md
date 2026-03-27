@@ -16,7 +16,6 @@
 
 ## Proximas Entregas
 
-- Reemplazar tasas estaticas por valores dinamicos.
 - Agregar tests.
 - Agregar seccion de mercado, para que muestre el historia de fluctuacion de moneda en 7 dias - 1 mes - 1 año .
 

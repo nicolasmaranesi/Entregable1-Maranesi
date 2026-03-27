@@ -32,10 +32,16 @@ async function loadRates(){
   try{
     const response = await fetch(URL);
 
+
+
     if (!response.ok) {
       throw new Error("Error al obtener cotizaciones");
     }
      const data = await response.json();
+
+      if (!data || !data.rates) {
+      throw new Error("Respuesta inválida");
+    }
 
   
     rates = data.rates;
@@ -84,27 +90,36 @@ async function loadCurrencies() {
 }
 
 function buildDropdown(container, type) {
-  container.innerHTML = "";
+  container.textContent = "";
 
   currencies.forEach(currency => {
-    const div = document.createElement("div");
-    div.className = "currencyOption";
-    div.innerHTML = `
-      <span class="currencyFlag">${currency.flag || currency.icon || "💱"}</span>
-      <span class="currencyText">${currency.code} - ${currency.name}</span>
-    `;
+    const optionDiv = document.createElement("div");
+    optionDiv.className = "currencyOption";
 
-    div.onclick = () => {
-      if (type === "from") from = currency.code;
-      else to = currency.code;
+    const flag = document.createElement("span");
+    flag.className = "currencyFlag";
+    flag.textContent = currency.flag || currency.icon || "💱";
+
+    const text = document.createElement("span");
+    text.className = "currencyText";
+    text.textContent = `${currency.code} - ${currency.name}`;
+
+    optionDiv.appendChild(flag);
+    optionDiv.appendChild(text);
+
+    optionDiv.addEventListener("click", () => {
+      if (type === "from") {
+        from = currency.code;
+      } else {
+        to = currency.code;
+      }
 
       updateSelected(type, currency.code);
       container.classList.add("hidden");
-
       calculate();
-    };
+    });
 
-    container.appendChild(div);
+    container.appendChild(optionDiv);
   });
 }
 
@@ -114,10 +129,18 @@ function updateSelected(type, code) {
 
   if (!curr) return;
 
-  target.innerHTML = `
-    <span class="currencyFlag">${curr.flag || curr.icon || "💱"}</span>
-    <span class="currencyText">${curr.code} - ${curr.name}</span>
-  `;
+  target.textContent = "";
+
+  const flag = document.createElement("span");
+  flag.className = "currencyFlag";
+  flag.textContent = curr.flag || curr.icon || "💱";
+  
+  const text = document.createElement("span");
+  text.className = "currencyText";
+  text.textContent = `${curr.code} - ${curr.name}`;
+  
+  target.appendChild(flag);
+  target.appendChild(text);
 }
 
 fromSelected.onclick = () => fromDropdown.classList.toggle("hidden");
@@ -147,7 +170,10 @@ function calculate() {
 }
 
 amountInput.addEventListener("input", calculate);
-exchangeBtn.addEventListener("click", calculate);
+exchangeBtn.addEventListener("click", () => {
+  calculate();
+  showSuccesToast();
+});
 
 
 swapBtn.onclick = () => {

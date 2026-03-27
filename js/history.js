@@ -6,58 +6,98 @@
   let currencies = [];
 
 
-  function withReverse(fn) {
-    return function(array) {
-      fn(array.slice().reverse());
+  function withReverse(renderCallback) {
+    return function(collection) {
+      renderCallback(collection.slice().reverse());
     };
   }
 
-  function withFilter(fn, filterFn) {
-    return function(array, ...args) {
-      const filtered = array.filter(filterFn);
-      fn(filtered, ...args);
+  function withFilter(renderCallback, filterCallback) {
+    return function(collection, ...args) {
+      const filteredItems = collection.filter(filterCallback);
+      renderCallback(filteredItems, ...args);
     };
   }
 
   function renderHistory(movements) {
+    historyList.innerHTML = "";
     if (!movements.length) {
       emptyState.style.display = "block";
-      historyList.innerHTML = "";
       return;
     }
 
     emptyState.style.display = "none";
 
-    historyList.innerHTML = movements
-      .map((mov, index) => `
-        <article class="historyItem">
-          <div class="historyTop">
-            <span class="historyDate">${mov.fecha}</span>
-            <span class="historyStatus success">${mov.resultado}</span>
-            <button class="deleteBtn" data-index="${index}">
-          <span class="material-symbols-outlined">Borrar</span>
-        </button>
-          </div>
+    movements.forEach((movement, index) => {
 
-          
+      const historyItem = document.createElement("article");
+      historyItem.classList.add("historyItem");
 
-          <div class="historyBody">
-            <div class="historyCurrency">
-              <strong>${mov.montoDesde}</strong> ${mov.monedaDesde}
-            </div>
+      const historyTop = document.createElement("div");
+      historyTop.classList.add("historyTop");
 
-            <div class="historyArrow">→</div>
+      const historyDate = document.createElement("span");
+      historyDate.classList.add("historyDate");
+      historyDate.textContent = movement.fecha;
 
-            <div class="historyCurrency">
-              <strong>${mov.montoHasta.toLocaleString("es-AR", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-              })}</strong> ${mov.monedaHasta}
-            </div>
-          </div>
-        </article>
-      `)
-      .join("");
+      const historyStatus = document.createElement("span");
+      historyStatus.classList.add("historyStatus", "success");
+      historyStatus.textContent = movement.resultado;
+
+      const deleteButton = document.createElement("button");
+      deleteButton.classList.add("deleteButton");
+      deleteButton.addEventListener("click", () => {
+        deleteMovement(index);
+      })
+
+      const deleteIcon = document.createElement("span");
+      deleteIcon.classList.add("material-symbols-outlined");
+      deleteIcon.textContent = "Borrar";
+
+      deleteButton.appendChild(deleteIcon);
+
+      historyTop.appendChild(historyDate);
+      historyTop.appendChild(historyStatus);
+      historyTop.appendChild(deleteButton);
+
+      const  historyBody = document.createElement("div");
+      historyBody.classList.add("historyBody");
+
+      const historyCurrencyFrom = document.createElement("div");
+      historyCurrencyFrom.classList.add("historyCurrency");
+
+      const strongFrom = document.createElement("strong");
+      strongFrom.textContent = movement.montoDesde;
+
+      historyCurrencyFrom.appendChild(strongFrom);
+      historyCurrencyFrom.append(` ${movement.monedaDesde}`);
+
+      const historyArrow = document.createElement("div");
+      historyArrow.classList.add("historyArrow");
+      historyArrow.textContent = "→";
+
+      const historyCurrencyTo = document.createElement("div");
+      historyCurrencyTo.classList.add("historyCurrency");
+
+      const formattedAmount = movement.montoHasta.toLocaleString("es-AR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }); 
+
+      const strongTo = document.createElement("strong");
+      strongTo.textContent = formattedAmount;
+      
+      historyCurrencyTo.appendChild(strongTo);
+      historyCurrencyTo.append(` ${movement.monedaHasta}`);
+
+      historyBody.appendChild(historyCurrencyFrom);
+      historyBody.appendChild(historyArrow);  
+      historyBody.appendChild(historyCurrencyTo);  
+      
+      historyItem.appendChild(historyTop);
+      historyItem.appendChild(historyBody);
+      historyList.appendChild(historyItem);
+    })
   }
 
   function getHistory() {
@@ -95,9 +135,9 @@
   }
 
   const renderFilteredReversedHistory = withReverse(
-    withFilter(renderHistory, mov => {
+    withFilter(renderHistory, movement => {
       const selected = filterCurrency.value;
-      return !selected || mov.monedaDesde === selected || mov.monedaHasta === selected;
+      return !selected || movement.monedaDesde === selected || movement.monedaHasta === selected;
     })
   );
 
@@ -121,12 +161,4 @@
   renderFilteredReversedHistory(movements);
 }
 
-historyList.addEventListener("click", (e) => {
-  const btn = e.target.closest(".deleteBtn");
-
-    if (btn) {
-    const index = btn.dataset.index;
-    deleteMovement(index);
-  }
-});
 
